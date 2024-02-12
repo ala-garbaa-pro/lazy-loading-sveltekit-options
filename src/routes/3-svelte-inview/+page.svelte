@@ -35,3 +35,7 @@
   <h2>2-lazy-loading-images</h2>
 </a>
 <br />
+<a href="/3-svelte-inview/3-video-control">
+  <h2>3-video-control</h2>
+</a>
+<br />

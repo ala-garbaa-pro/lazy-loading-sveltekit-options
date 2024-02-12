@@ -14,11 +14,14 @@
   });
 </script>
 
-<img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" />
+<div style="width: 300px; height:500px;">
+  <img {src} {alt} class:loaded bind:this={thisImage} loading="lazy" />
+</div>
 
 <style>
   img {
-    height: 500px;
+    height: 300px;
+    width: 500px;
     opacity: 0;
     transition: opacity 1200ms ease-out;
   }

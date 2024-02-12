@@ -39,3 +39,7 @@
   <h2>3-video-control</h2>
 </a>
 <br />
+<a href="/3-svelte-inview/4-animations">
+  <h2>4-animations</h2>
+</a>
+<br />

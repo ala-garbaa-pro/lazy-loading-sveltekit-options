@@ -8,7 +8,7 @@
   export let right = 0;
 
   let intersecting = false;
-  let container: Element;
+  let container: HTMLElement;
 
   onMount(() => {
     if (typeof IntersectionObserver !== "undefined") {
@@ -16,13 +16,18 @@
 
       const observer = new IntersectionObserver(
         (entries) => {
-          intersecting = entries[0].isIntersecting;
-          if (intersecting && once) {
-            observer.unobserve(container);
-          }
+          entries.forEach((entry) => {
+            console.log("isIntersecting =>", entry.isIntersecting);
+
+            intersecting = entry.isIntersecting;
+            if (intersecting && once) {
+              observer.unobserve(entry.target);
+            }
+          });
         },
         {
           rootMargin,
+          threshold: 0.5,
         }
       );
 
@@ -31,22 +36,22 @@
     }
 
     // The following is a fallback for older browsers
-    function handler() {
-      const bcr = container.getBoundingClientRect();
+    // function handler() {
+    //   const bcr = container.getBoundingClientRect();
 
-      intersecting =
-        bcr.bottom + bottom > 0 &&
-        bcr.right + right > 0 &&
-        bcr.top - top < window.innerHeight &&
-        bcr.left - left < window.innerWidth;
+    //   intersecting =
+    //     bcr.bottom + bottom > 0 &&
+    //     bcr.right + right > 0 &&
+    //     bcr.top - top < window.innerHeight &&
+    //     bcr.left - left < window.innerWidth;
 
-      if (intersecting && once) {
-        window.removeEventListener("scroll", handler);
-      }
-    }
+    //   if (intersecting && once) {
+    //     window.removeEventListener("scroll", handler);
+    //   }
+    // }
 
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    // window.addEventListener("scroll", handler);
+    // return () => window.removeEventListener("scroll", handler);
   });
 </script>
 

@@ -14,6 +14,7 @@
 <div style="height: 900px; width:50px"></div>
 <div
   use:inview
+  on:inview_enter={() => videoRef.play()}
   on:inview_leave={() => videoRef.pause()}
 >
   <video width="500" controls bind:this={videoRef} poster="/poster.png">
